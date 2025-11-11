@@ -1,5 +1,5 @@
 //CSC 345 Term Project - Milestone #1
-//Wyatt Harris
+//Wyatt Harris and Anna Graham
 public interface StackADT{
     public Object pop();
     public void push(Object o);

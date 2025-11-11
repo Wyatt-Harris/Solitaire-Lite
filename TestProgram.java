@@ -1,14 +1,16 @@
 //CSC 345 Term Project - Milestone #1
-//Wyatt Harris
+//Wyatt Harris and Anna Graham
 //♠ ♥ ♦ ♣
+// You may need to set your console to use UTF-8 encoding to display card suit symbols.
+//If on a Windows machine, run chcp 65001 in Windows Command Prompt before executing the program.
 public class TestProgram {
     public static void main(String[] args) {
         //creating card objects 
-        Card c1 = new Card("Diamonds", "Ace");
-        Card c2 = new Card("Diamonds", "Two");
-        Card c3 = new Card("Diamonds", "Three");
-        Card c4 = new Card("Diamonds", "Four");
-        Card c5 = new Card("Hearts", "Queen");
+        Card c1 = new Card("♦'", 'A');
+        Card c2 = new Card("♦", '2');
+        Card c3 = new Card("♦", '3');
+        Card c4 = new Card("♦", '4');
+        Card c5 = new Card("♥", 'Q');
 
         LinkedStack stack = new LinkedStack();
 
