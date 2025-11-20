@@ -44,6 +44,8 @@ public void shuffle(){
     }
     
 }
-
+public String toString(){
+    return "" + size;
+}
 
 }
