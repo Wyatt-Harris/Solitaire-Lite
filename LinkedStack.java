@@ -1,8 +1,8 @@
 //CSC 345 Term Project - Milestone #1
 //Wyatt Harris
 public class LinkedStack implements StackADT{
-    private int size;
-    private Node top;
+    protected int size;
+    protected Node top;
     public LinkedStack(){
         size = 0;
         top = null;

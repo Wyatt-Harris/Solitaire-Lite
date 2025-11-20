@@ -6,11 +6,11 @@
 public class TestProgram {
     public static void main(String[] args) {
         //creating card objects 
-        Card c1 = new Card("♦'", 'A');
-        Card c2 = new Card("♦", '2');
-        Card c3 = new Card("♦", '3');
-        Card c4 = new Card("♦", '4');
-        Card c5 = new Card("♥", 'Q');
+        Card c1 = new Card("♦", "A");
+        Card c2 = new Card("♦", "2");
+        Card c3 = new Card("♦", "3");
+        Card c4 = new Card("♦", "4");
+        Card c5 = new Card("♥", "Q");
 
         LinkedStack stack = new LinkedStack();
 
