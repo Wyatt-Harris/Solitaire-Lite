@@ -1,5 +1,5 @@
-//CSC 345 Term Project - Milestone #1
-//Wyatt Harris
+//CSC 345 Term Project - Milestone #2
+//Wyatt Harris, Anna Graham, Kenneth Jamieson
 public class LinkedStack implements StackADT{
     private int size;
     private Node top;
