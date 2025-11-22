@@ -1,13 +1,25 @@
-//CSC 345 Term Project - Milestone #1
-//Wyatt Harris
-public class LinkedStack implements StackADT{
+// CSC 345 Term Project - Milestone #1
+// Wyatt Harris, Anna Graham, Kenneth Jamieson
+
+
+public class LinkedStack implements StackADT
+{
+
+    // Instance variables
     private int size;
     private Node top;
-    public LinkedStack(){
+    
+
+    // Constructor
+    public LinkedStack()
+    {
         size = 0;
         top = null;
     }
-    public Object pop(){
+
+    // Pop method
+    public Object pop()
+    {
         if (size == 0)
             throw new RuntimeException("Can't pop from an empty stack!");
         Object result = top.getValue();
@@ -15,38 +27,59 @@ public class LinkedStack implements StackADT{
         size--;
         return result;
     }
-    public void push(Object o){
+
+    // Push method
+    public void push(Object o)
+    {
         Node n = new Node(o, top);
         top = n;
         size++;
     }
-    public Object peek(){
-        if(top == null){
+
+    // Peek method
+    public Object peek()
+    {
+        if(top == null)
+        {
             throw new RuntimeException("Can't peek at an empty stack!");
-        }else{ 
+        }else
+        { 
             return top.getValue();
         }
     }
-    public Boolean isEmpty(){
+
+    // isEmpty method
+    public Boolean isEmpty()
+    {
         return size == 0;
     }
-    public int size(){
+
+    // size method
+    public int size()
+    {
         return size;
     }
+
+    // toString method
     @Override
-    public String toString(){
+    public String toString()
+    {
         int i = 0;
         Node current = top;
-        String result = "top [ ";
+        String result = "";
         while(current != null){
-            if(current.getNext() != null){
-                result += current.getValue() + " | ";
-            }else{
+            if(current.getNext() != null)
+            {
+                result += current.getValue() + " ";
+            }else
+            {
                 result += current.getValue() + " ";
             }
             current = current.getNext();
         }
-        return result + "]";
+        return result + "";
 
     }
+
+    
 }
