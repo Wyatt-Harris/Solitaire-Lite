@@ -1,3 +1,5 @@
+//CSC 345 Term Project - Milestone #2
+//Wyatt Harris, Anna Graham, Kenneth Jamieson
 public class Node {
     private Object element;
     private Node next;
