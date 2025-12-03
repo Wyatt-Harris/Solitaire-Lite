@@ -1,12 +1,18 @@
-//CSC 345 Term Project - Milestone #1
-//Wyatt Harris and Anna Graham
+//CSC 345 Term Project - Milestone #2
+//Wyatt Harris, Anna Graham, Kenneth Jamieson
 public class Card {
-    private String suit;
+    private char suit;
     private String rank;
 
-    public Card(String suit, String rank){
+    public Card(char suit, String rank){
         this.suit = suit;
         this.rank = rank;
+    }
+    public char getSuit(){
+        return suit;
+    }
+    public String getRank(){
+        return rank;
     }
     @Override
     public String toString(){
