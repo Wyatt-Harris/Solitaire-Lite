@@ -8,7 +8,7 @@ public class Deck
     public Deck()
     {
         
-        String[] suit = {"Cubs", "Diamonds", "Hearts", "Spades"};
+        String[] suit = {"c", "d", "h", "s"};
         String[] rank = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         // Initialize the cards array
         cards = new Card[52];
@@ -55,10 +55,24 @@ public class Deck
         }
     }
 
+    public void addCard(Card card)
+    {
+        if (topCard > 0) 
+        {
+            topCard--;
+            cards[topCard] = card;
+        }
+    }
+
     @Override
     public String toString()
     {
         return "Deck: " + (cards.length - topCard);
+    }
+
+    public int size()
+    {
+        return cards.length - topCard;
     }
 
 }
