@@ -1,4 +1,4 @@
-//CSC 345 Term Project - Milestone #2
+//CSC 345 Term Project - Solitaire Lite 
 //Wyatt Harris, Anna Graham, Kenneth Jamieson
 public class Card {
     private char suit;
@@ -18,4 +18,6 @@ public class Card {
     public String toString(){
         return "" + rank + suit;
     }
+    
 }
+
