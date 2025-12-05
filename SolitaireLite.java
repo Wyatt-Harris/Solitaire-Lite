@@ -1,17 +1,22 @@
-//CSC 345 Term Project - Milestone #2
+//CSC 345 Term Project - Solitaire Lite
 //Wyatt Harris, Anna Graham, Kenneth Jamieson
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class SolitaireLite {
     //generate deck
-    Deck deck = new Deck();
+    Deck deck;
     //discard
-    LinkedStack discard = new LinkedStack();
+    LinkedStack discard;
     //create foundation decks and array of those decks
-    LinkedStack diamondFoundation = new LinkedStack();
-    LinkedStack heartsFoundation = new LinkedStack();
-    LinkedStack clubsFoundation = new LinkedStack();
-    LinkedStack spadesFoundation = new LinkedStack();
-    LinkedStack[] foundations = {diamondFoundation, heartsFoundation, clubsFoundation, spadesFoundation}; 
+    LinkedStack diamondsFoundation;
+    LinkedStack heartsFoundation;
+    LinkedStack clubsFoundation;
+    LinkedStack spadesFoundation; 
+    LinkedStack[] foundations;
+
+    public SolitaireLite(){
+        startNewGame();
+    }
     
     @Override
     public String toString(){
@@ -43,80 +48,116 @@ public class SolitaireLite {
     public boolean isWin(){
         return deck.isEmpty() && discard.isEmpty();
     }
-    /* 
+    
     public void startNewGame(){
-        SolitaireLite game = new SolitaireLite();
-        System.out.println("Welcome to Solitaire Lite!");
-        System.out.println(game);
-        System.out.println("Choose an option:");
-        System.out.println("1) Draw from Deck");
-        System.out.println("2) Move Discard to Foundation Pile");
-        System.out.println("3) Start a new game");
-        System.out.println("4) Quit");
-    }
-*/  
-    public String foundationNext(){
-        return "hello";
+        deck = new Deck();
+        discard = new LinkedStack();
+        diamondsFoundation = new LinkedStack();
+        heartsFoundation = new LinkedStack();
+        clubsFoundation = new LinkedStack();
+        spadesFoundation = new LinkedStack();
+        foundations = new LinkedStack[]{diamondsFoundation, heartsFoundation, clubsFoundation, spadesFoundation}; 
+
     }
 
-    //this method will eventually use the above method to actually have the logic it needs
-    //for the game to function
-    public Object drawFromDeck(){
+   
+    public void drawFromDeck(){
+        if(deck.isEmpty()){
+            int size = discard.size();
+            for(int i = 0; i < size;i++){
+            Card card = (Card)discard.pop();
+            deck.push(card);
+            }
+        }
+
         Card drawn = (Card)deck.pop();
+        discard.push(drawn);
+        
+    }
+
+    public String foundationNext(LinkedStack f){
+        String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        if(f.size()>=ranks.length){
+            return "";
+        }
+        return ranks[f.size()]; 
+    }
+
+    public void moveDiscardToFoundation(){
+
+        if(discard.isEmpty()){
+            System.out.println("No cards available, please draw a card.");
+            return;
+        }
+        Card drawn = (Card)discard.peek();
         char suit = ' ';
         String rank = " ";
         if (drawn != null){
             suit = drawn.getSuit();
             rank = drawn.getRank();
         }
-        if (suit == 'D'){
-            diamondFoundation.push(drawn);
-        }else if (suit == 'H'){
+        if ((suit == 'D') && foundationNext(diamondsFoundation).equals(rank)){
+            diamondsFoundation.push(drawn);
+            discard.pop();
+        }else if ((suit == 'H') && foundationNext(heartsFoundation).equals(rank)){
             heartsFoundation.push(drawn);
-        }else if (suit == 'C'){
+            discard.pop();
+        }else if ((suit == 'C') && foundationNext(clubsFoundation).equals(rank)){
             clubsFoundation.push(drawn);
-        }else if (suit == 'S') {
+            discard.pop();
+        }else if ((suit == 'S') && foundationNext(spadesFoundation).equals(rank)) {
             spadesFoundation.push(drawn);
-        }else{
-            discard.push(drawn);
+            discard.pop();
+        }else {
+            System.out.println("No Valid Move.");
         }
-        return drawn;
-    }
-    
-    //this method has a filler body, this is nowhere close the correct implementation
-    public boolean moveDiscardToFoundation(int pileIndex){
-        boolean empty = discard.isEmpty();
-        Card card = (Card)discard.pop();
-        return !empty;
-    }
+}
     public static void main(String[] args) {
         //Create user input
-        Scanner scn = new Scanner(System.in);
-        //make the game 
-        SolitaireLite game = new SolitaireLite();
-        int userInput = 0; 
-        //main game loop that will be expanded on
-        while(userInput != 4){
-            System.out.println(game);
-            System.out.println("Choose an option:");
-            System.out.println("1) Draw from Deck");
-            System.out.println("2) Move Discard to Foundation Pile");
-            System.out.println("3) Start a new game");
-            System.out.println("4) Quit");
-            userInput = scn.nextInt();
-            switch(userInput){
-                case 1:
-                    System.out.println(game.drawFromDeck());
-                case 2:
-                    //implement later
-                case 3:
-                    //implement later
-                case 4:
-                    break;
-                default:
-                    System.out.println("Invalid Output");
+        try (Scanner scn = new Scanner(System.in)) {
+            //make the game 
+            SolitaireLite game = new SolitaireLite();
+            int userInput = 0; 
+            //main game loop that will be expanded on
+            while((userInput != 4)){
+                if(game.isWin()){
+                break;
+                }
+                System.out.println(game);
+                System.out.println("Choose an option:");
+                System.out.println("1) Draw from Deck");
+                System.out.println("2) Move Discard to Foundation Pile");
+                System.out.println("3) Start a new game");
+                System.out.println("4) Quit");
+                
+                try {
+                    userInput = scn.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    scn.next(); 
+                    continue; 
+                }
+                
+                switch(userInput){
+                    case 1:
+                       game.drawFromDeck();
+                       break;
+                    case 2:
+                        game.moveDiscardToFoundation();
+                        break;
+                    case 3:
+                       game.startNewGame();
+                       System.out.println("Welcome to Solitaire Lite!");
+                       break;
+                    case 4:
+                        System.out.println("Game Quited.");
+                        break;
+                    default:
+                        System.out.println("Invalid Output");
+                        break;
+                }
             }
+            System.out.println("Thanks for playing!");
         }
-        System.out.println("Thanks for playing!");
     }
 }

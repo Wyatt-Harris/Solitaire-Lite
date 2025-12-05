@@ -1,4 +1,4 @@
-//CSC 345 Term Project - Milestone #2
+//CSC 345 Term Project - Solitaire Lite 
 //Wyatt Harris, Anna Graham, Kenneth Jamieson
 public class LinkedStack implements StackADT{
     protected int size;
