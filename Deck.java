@@ -1,9 +1,9 @@
-//CSC 345 Term Project - Milestone #2
+//CCSC 345 Term Project - Solitaire Lite
 //Wyatt Harris, Anna Graham, Kenneth Jamieson
 import java.util.ArrayList;
 import java.util.Collections;
 public class Deck extends LinkedStack {
-    char[] suits = {'S', 'H', 'D', 'C'};
+    char[] suits = {'s', 'h', 'd', 'c'};
     String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     public Deck(){
     ArrayList<Card> cards = new ArrayList<>();
